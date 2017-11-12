@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "coding-flashcards-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,6 +21,15 @@
   "devDependencies": {
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
+    "enzyme-to-json": "^3.2.2",
     "react-test-renderer": "^16.1.0"
+  },
+  "jest": {
+    "collectCoverageFrom" : [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/registerServiceWorker.js"
+    ],
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }
