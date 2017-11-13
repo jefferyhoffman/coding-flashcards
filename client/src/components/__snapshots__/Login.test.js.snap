@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login> renders correctly 1`] = `
+<div
+  className="Login"
+>
+  <FirebaseAuth
+    firebaseAuth={
+      Object {
+        "apiKey": "AIzaSyDKxUZI84h3nLirimQuw11Vy2mmEC56GV0",
+        "appName": "[DEFAULT]",
+        "authDomain": "coding-flashcards.firebaseapp.com",
+        "currentUser": null,
+      }
+    }
+    uiConfig={
+      Object {
+        "signInFlow": "popup",
+        "signInOptions": Array [
+          "github.com",
+          "google.com",
+          "password",
+        ],
+        "signInSuccessUrl": "/dashboard",
+      }
+    }
+  />
+</div>
+`;
