@@ -1,18 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import PropTypes from 'prop-types';
+import { Switch, Route, Redirect } from 'react-router';
+import Loading from './Loading';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import NotFound from './NotFound';
 import './App.css';
 
 class App extends Component {
+  static propTypes = {
+    firebase: PropTypes.object.isRequired
+  };
+
+  state = {
+    loading: true,
+    user: null
+  };
+
+  componentDidMount() {
+    this.props.firebase.auth().onAuthStateChanged(user => {
+      this.setState({ loading: false, user });
+    });
+  }
+
   render() {
+    const routes = (
+      <Switch>
+        <Route path="/login" render={() => <Login firebase={this.props.firebase} />} />
+        <Route path="/dashboard" render={() => this.state.user
+          ? <Dashboard firebase={this.props.firebase} />
+          : <Redirect to="/login" />
+        } />
+        <Route component={NotFound} />
+      </Switch>
+    );
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        { this.state.loading
+          ? <Loading />
+          : routes }
       </div>
     );
   }
